@@ -1,11 +1,5 @@
-//------------------------------------------------------------------------------
-// <copyright file="Program.cs" company="Universidad Católica del Uruguay">
-//     Copyright (c) Programación II. Derechos reservados.
-// </copyright>
-//------------------------------------------------------------------------------
-
 using System;
-using Library;
+using Ucu.Poo.Ejercicio101;
 
 namespace Project
 {
@@ -19,9 +13,27 @@ namespace Project
         /// </summary>
         public static void Main()
         {
-            Train train = new Train();
-            train.StartEngines();
-            Console.WriteLine("Hello World!");
+            Estudiante estudiante =
+                new Estudiante("Ana Pérez", "4.567.890-1");
+
+            Equipo notebook =
+                new Equipo("NB001", "Notebook Dell");
+
+            Console.WriteLine("=== ESTADO INICIAL ===");
+            Console.WriteLine($"Disponible: {notebook.EstaDisponible()}");
+
+            Prestamo prestamo = new Prestamo(estudiante, notebook);
+
+            Console.WriteLine("\n=== PRÉSTAMO ===");
+            Console.WriteLine($"Estudiante: {estudiante.ObtenerDescripcion()}");
+            Console.WriteLine($"Préstamo activo: {prestamo.Activo}");
+            Console.WriteLine($"Disponible: {notebook.EstaDisponible()}");
+
+            prestamo.Finalizar();
+
+            Console.WriteLine("\n=== DEVOLUCIÓN ===");
+            Console.WriteLine($"Préstamo activo: {prestamo.Activo}");
+            Console.WriteLine($"Disponible: {notebook.EstaDisponible()}");
         }
     }
 }
